@@ -39,5 +39,6 @@ app.use(UserGameHistoryRouter)
 app.use(AuthRouter)
 
 app.listen(port, () => {
+    
     console.log(`Running at port - ${port}`)
 })
