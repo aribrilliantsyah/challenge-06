@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "db_challenge4",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "database_test",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "database_production",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  }
+}
