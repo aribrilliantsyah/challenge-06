@@ -60,5 +60,5 @@ typings/
 # vscode settings folder
 .vscode/
 
-.yarn.lock
-.package-lock.json
+yarn.lock
+package-lock.json
