@@ -15,8 +15,6 @@ Install:
   stage: install
   script:
     - npm install
-    - npx sequelize db:create
-    - npx sequelize db:migrate
 
 # Job 2:
 # Deploy 
