@@ -1,5 +1,5 @@
 # Node docker image on which this would be run
-image: node:8.10.0
+image: node:latest
 
 cache:
   paths:
@@ -15,8 +15,8 @@ Install:
   stage: install
   script:
     - npm install
-    - node_modules/.bin/sequelize db:create
-    - node_modules/.bin/sequelize db:migrate
+    - npx sequelize db:create
+    - npx sequelize db:migrate
 
 # Job 2:
 # Deploy 
