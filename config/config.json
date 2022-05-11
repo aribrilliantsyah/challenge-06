@@ -16,11 +16,7 @@
     "port": "5432"
   },
   "production": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "database_production",
-    "host": "localhost",
-    "dialect": "postgres",
-    "port": "5432"
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres"
   }
 }

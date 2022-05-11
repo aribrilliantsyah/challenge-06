@@ -9,3 +9,6 @@
 
 > /docs (swagger)
 > /v1/api ... (prefix api)
+
+heroku run node_modules/.bin/sequelize db:create
+heroku run node_modules/.bin/sequelize db:migrate
