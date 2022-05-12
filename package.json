@@ -4,8 +4,8 @@
   "description": "Ya ini untuk tugas, jangan nyontek lebih baik bertanya pada yang punya 😘",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "test": "jest",
+    "start": "node server.js"
   },
   "author": "Ari Ardiansyah",
   "license": "MIT",
@@ -14,10 +14,12 @@
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
+    "jest": "^28.1.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.2",
     "pg": "^8.7.3",
     "sequelize": "^6.18.0",
+    "supertest": "^6.2.3",
     "swagger-ui-express": "^4.3.0",
     "uuid": "^8.3.2",
     "yamljs": "^0.3.0"

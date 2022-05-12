@@ -14,7 +14,8 @@ module.exports = {
         references: {        
           model: 'user_game',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       name: {
         type: Sequelize.STRING
