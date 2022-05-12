@@ -13,7 +13,6 @@ const UserGameHistoryRouter = require("./routes/UserGameHistoryRouter")
 const AuthRouter = require("./routes/AuthRouter")
 
 const app = express()
-const port = process.env.PORT || 3000
 const apiVersion = '/api/v1'
 const swaggerDocument = YAML.load('collection.yaml')
 
