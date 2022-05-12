@@ -7,7 +7,7 @@ cache:
 
 stages:
   - install
-  - test
+  # - test
   - deploy
 
 # Job 1:
@@ -19,10 +19,10 @@ Install:
 
 # Job 2
 # Test Bang
-Test:
-  stage: test
-  script:
-    - npm test
+# Test:
+#   stage: test
+#   script:
+#     - npm test
 
 
 # Job 3:
