@@ -7,6 +7,7 @@ cache:
 
 stages:
   - install
+  - test
   - deploy
 
 # Job 1:
@@ -16,7 +17,14 @@ Install:
   script:
     - npm install
 
-# Job 2:
+# Job 2
+# Test Bang
+Test:
+  stage: test
+  script:
+    - npm test
+
+# Job 3:
 # Deploy 
 Production:
   image: ruby:latest
