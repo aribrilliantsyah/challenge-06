@@ -99,7 +99,7 @@
 
       $.ajax(settings).done((res) => {
         if(res?.data?.name){
-          console.log(res?.data)
+          //console.log(res?.data)
           el_name.val(res?.data?.name)
           el_gender.val(res?.data?.gender)
           el_date_of_birth.val(res?.data?.date_of_birth)
@@ -148,7 +148,7 @@
       };
 
       $.ajax(settings).done(function (response) {
-        console.log(response)
+        //console.log(response)
         alert('Success Update Data')
         window.location = '/user-game-biodata?user_game_id='+user_game_id
       }).fail((xhr) => {

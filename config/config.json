@@ -8,14 +8,13 @@
     "port": "5432"
   },
   "test": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "db_challenge4",
+    "host": "localhost",
     "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": { 
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }  
+    "port": "5432",
+    "logging": false
   },
   "production": {
     "use_env_variable": "DATABASE_URL",

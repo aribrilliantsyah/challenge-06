@@ -20,7 +20,7 @@ class UserGameHistoryController {
           'data': userhistory
         })
       }).catch((err) => {
-        console.log('woy ',err)
+        //console.log('woy ',err)
         return res.status(400).json({
           'message': 'Failed'
         })
@@ -39,7 +39,7 @@ class UserGameHistoryController {
           'data': userhistory
         })
       }).catch((err) => {
-        console.log('woy ',err)
+        //console.log('woy ',err)
         return res.status(400).json({
           'message': 'Failed'
         })
@@ -62,7 +62,7 @@ class UserGameHistoryController {
         'data': userhistory
       })
     }).catch((err) => {
-      console.log('woy ',err)
+      //console.log('woy ',err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -71,6 +71,12 @@ class UserGameHistoryController {
 
   create(req, res) {
     let { user_game_id, score, start_at, end_at } = req.body
+
+    if(!user_game_id && !score && !start_at && !end_at){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
+    }
 
     const checkUserGame = (user_game_id, success, failed) => {
       UserGame.findOne({where: { id: user_game_id }}).then((usergame) => {
@@ -101,13 +107,13 @@ class UserGameHistoryController {
           'data': userhistory
         })
       }).catch((err) => {
-        console.log(err)
+        //console.log(err)
         return res.status(400).json({
           'message': 'Failed'
         })
       })
     }, (error) => {
-      console.log(error)
+      //console.log(error)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -128,6 +134,12 @@ class UserGameHistoryController {
       where: {
         id: id
       }
+    }
+
+    if(!userhistory_data.user_game_id && !userhistory_data.score && !userhistory_data.start_at && !userhistory_data.end_at){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
     }
     
     const checkUserGame = (user_game_id, success, failed) => {
@@ -166,19 +178,19 @@ class UserGameHistoryController {
             'data': userhistory_data
           })
         }).catch((err) => {
-          console.log(err)
+          //console.log(err)
           return res.status(400).json({
             'message': 'Failed'
           })
         })
       }, (err) => {
-        console.log(err)
+        //console.log(err)
         return res.status(400).json({
           'message': 'Failed'
         })
       })
     }, (err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -214,7 +226,7 @@ class UserGameHistoryController {
         })
       })
     }, (err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })

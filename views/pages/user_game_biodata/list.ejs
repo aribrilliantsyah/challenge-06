@@ -94,9 +94,9 @@
             html += `<td>${obj.place_of_birth}</td>`
             html += `<td>${obj.address}</td>`
             html += `<td>
-                <a href="user-game-biodata/update/${obj.id}?user_game_id=${user_game_id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-pencil"></i></a>
+                <a href="/user-game-biodata/update/${obj.id}?user_game_id=${user_game_id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-pencil"></i></a>
                 <button onclick="onDelete(${obj.id})" class="btn btn-sm btn-custom"><i class="fa-solid fa-trash"></i></button>
-                <a href="user-game-biodata/show/${obj.id}?user_game_id=${user_game_id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-eye"></i></a>
+                <a href="/user-game-biodata/show/${obj.id}?user_game_id=${user_game_id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-eye"></i></a>
               </td>`
             html += '</tr>'
           })

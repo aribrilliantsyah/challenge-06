@@ -77,7 +77,7 @@
 
       $.ajax(settings).done((res) => {
         if(res?.data?.username){
-          console.log(res?.data)
+          //console.log(res?.data)
           el_username.val(res?.data?.username)
           el_password.val(res?.data?.password)
         }
@@ -117,7 +117,7 @@
       }
 
       $.ajax(settings).done(function (response) {
-        console.log(response)
+        //console.log(response)
         alert('Success Update Data')
         window.location = '/user-game'
       }).fail((xhr) => {

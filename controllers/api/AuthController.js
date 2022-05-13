@@ -8,6 +8,13 @@ class AuthController {
   
   async login(req, res) {
     let {username, password} = req.body
+
+    if(!username || !password){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
+    }
+    
     let user_game = await UserGame.findOne({where: {username: username }})
     if(!user_game?.username){
       return res.status(200).json({
@@ -27,7 +34,7 @@ class AuthController {
       password: password
     }, privateKey, {
       expiresIn: '1d'
-    });
+    })
 
     await UserGame.update({
       token: token
@@ -37,7 +44,9 @@ class AuthController {
       }
     })
 
-    req.session.token = token
+    if(req?.session){
+      req.session.token = token
+    }
 
     return res.status(200).json({
       'message': 'Username & Password Match',
@@ -50,8 +59,16 @@ class AuthController {
 
   async register(req, res) {
     let { username, password } = req.body
+
     let uid = uuidv4()
-    UserGame.create({
+
+    if(!username || !password){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
+    }
+
+    await UserGame.create({
       uid: uid,
       username: username,
       password: password

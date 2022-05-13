@@ -2,7 +2,7 @@ class UserGameController {
     index(req, res){
         let user_current = req.user
         let token = req?.session?.token
-        console.log(user_current)
+        //console.log(user_current)
         res.render('pages/user_game/list', {token: token, user_current: user_current})
     }
     

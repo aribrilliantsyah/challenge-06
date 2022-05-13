@@ -87,9 +87,9 @@
             html += `<td>
                 <a href="/user-game-biodata?user_game_id=${obj.id}" class="btn btn-sm btn-custom">Biodata</a>
                 <a href="/user-game-history?user_game_id=${obj.id}" class="btn btn-sm btn-custom">History</a>
-                <a href="user-game/update/${obj.id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-pencil"></i></a>
+                <a href="/user-game/update/${obj.id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-pencil"></i></a>
                 ${(current_id == obj.id ? '' : `<button onclick="onDelete(${obj.id})" class="btn btn-sm btn-custom"><i class="fa-solid fa-trash"></i></button>`)}
-                <a href="user-game/show/${obj.id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-eye"></i></a>
+                <a href="/user-game/show/${obj.id}" class="btn btn-sm btn-custom"><i class="fa-solid fa-eye"></i></a>
               </td>`
             html += '</tr>'
           })

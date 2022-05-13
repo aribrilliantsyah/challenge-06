@@ -21,7 +21,7 @@ class UserGameController {
         'data': usergame
       })
     }).catch((err) => {
-      console.log('woy ',err)
+      //console.log('woy ',err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -47,7 +47,7 @@ class UserGameController {
         'data': usergame
       })
     }).catch((err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -57,6 +57,13 @@ class UserGameController {
   create(req, res) {
     let { username, password } = req.body
     let uid = uuidv4()
+    
+    if(!username || !password){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
+    }
+    
     UserGame.create({
       uid: uid,
       username: username,
@@ -83,6 +90,12 @@ class UserGameController {
       where: {
         id: id
       }
+    }
+    
+    if(!usergame_data.username || !usergame_data.password){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
     }
 
     const checkBefore = (id, success, failed) => {
@@ -118,13 +131,13 @@ class UserGameController {
           'data': usergame_data
         })
       }).catch((err) => {
-        console.log(err)
+        //console.log(err)
         return res.status(400).json({
           'message': 'Failed'
         })
       })
     }, (err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -167,7 +180,7 @@ class UserGameController {
         })
       })
     }, (err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })

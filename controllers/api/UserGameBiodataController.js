@@ -19,7 +19,7 @@ class UserGameBiodataController {
           'data': userbiodata
         })
       }).catch((err) => {
-        console.log('woy ',err)
+        //console.log('woy ',err)
         return res.status(400).json({
           'message': 'Failed'
         })
@@ -38,7 +38,7 @@ class UserGameBiodataController {
           'data': userbiodata
         })
       }).catch((err) => {
-        console.log('woy ',err)
+        //console.log('woy ',err)
         return res.status(400).json({
           'message': 'Failed'
         })
@@ -61,7 +61,7 @@ class UserGameBiodataController {
         'data': userbiodata
       })
     }).catch((err) => {
-      console.log('woy ',err)
+      //console.log('woy ',err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -69,7 +69,13 @@ class UserGameBiodataController {
   }
 
   create(req, res) {
-    let { user_game_id, name, gender, date_of_birth, place_of_birth, address} = req.body
+    let { user_game_id, name, gender, date_of_birth, place_of_birth, address } = req.body
+
+    if(!user_game_id && !name && !gender && !date_of_birth && !place_of_birth && !address){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
+    }
 
     const checkUserGame = (user_game_id, success, failed) => {
       UserGame.findOne({where: { id: user_game_id }}).then((usergame) => {
@@ -104,7 +110,7 @@ class UserGameBiodataController {
         })
       })
     }, (error) => {
-      console.log(error)
+      //console.log(error)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -112,6 +118,7 @@ class UserGameBiodataController {
   }
 
   update(req, res) {
+    
     let id = req.params.id   
     let userbiodata_data = {
       user_game_id: req.body?.user_game_id,
@@ -125,6 +132,12 @@ class UserGameBiodataController {
       where: {
         id: id
       }
+    }
+
+    if(!userbiodata_data.user_game_id && !userbiodata_data.name && !userbiodata_data.gender && !userbiodata_data.date_of_birth && !userbiodata_data.place_of_birth && !userbiodata_data.address){
+      return res.status(400).json({
+        'message': 'Failed'
+      })
     }
     
     const checkUserGame = (user_game_id, success, failed) => {
@@ -163,19 +176,19 @@ class UserGameBiodataController {
             'data': userbiodata_data
           })
         }).catch((err) => {
-          console.log(err)
+          //console.log(err)
           return res.status(400).json({
             'message': 'Failed'
           })
         })
       }, (err) => {
-        console.log(err)
+        //console.log(err)
         return res.status(400).json({
           'message': 'Failed'
         })
       })
     }, (err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })
@@ -211,7 +224,7 @@ class UserGameBiodataController {
         })
       })
     }, (err) => {
-      console.log(err)
+      //console.log(err)
       return res.status(400).json({
         'message': 'Failed'
       })
