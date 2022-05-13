@@ -17,8 +17,12 @@
     "logging": false
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "xrhppaqzezyugj",
+    "password": "1ed1b39bb510d1a060c89dfca186eadaae86ea81c76a139197490e093f1f1816",
+    "database": "d416i9jrldm99o",
+    "host": "ec2-52-212-228-71.eu-west-1.compute.amazonaws.com",
     "dialect": "postgres",
+    "port": "5432",
     "dialectOptions": {
       "ssl": { 
         "require": true,
