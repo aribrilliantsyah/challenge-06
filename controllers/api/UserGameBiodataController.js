@@ -128,6 +128,7 @@ class UserGameBiodataController {
       place_of_birth: req.body?.place_of_birth,
       address: req.body?.address,
     }
+    
     let query = {
       where: {
         id: id
@@ -140,57 +141,40 @@ class UserGameBiodataController {
       })
     }
     
-    const checkUserGame = (user_game_id, success, failed) => {
+    const checkUserGame = (user_game_id, success) => {
       UserGame.findOne({ where: { id: user_game_id } }).then((usergame) => {
+        if(!usergame){
+          return res.status(200).json({
+            'message': 'User game id not found',
+          })
+        }
         return success(usergame)
-      }).catch((err) => {
-        return failed(err)
       })
     }
 
-    const checkBefore = (id, success, failed) => {
+    const checkBefore = (id, success) => {
       UserGameBiodata.findOne({where: {id: id }}).then((userbiodata) => {
-        return success(userbiodata)
-      }).catch((err) => {
-        return failed(err)
-      })
-    } 
-    
-    checkUserGame(userbiodata_data.user_game_id, (data) => {
-      if(!data){
-        return res.status(200).json({
-          'message': 'User game id not found',
-        })
-      }
-
-      checkBefore(id, (data) => {
-        if(!data){
+        if(!userbiodata){
           return res.status(200).json({
             'message': 'Data not found',
           })
         }
-
+        return success(userbiodata)
+      })
+    } 
+    
+    checkBefore(id, (data) => {
+      checkUserGame(userbiodata_data.user_game_id, (data) => {
         UserGameBiodata.update(userbiodata_data, query).then((userbiodata) => {
           return res.status(200).json({
             'message': 'Success',
             'data': userbiodata_data
           })
         }).catch((err) => {
-          //console.log(err)
           return res.status(400).json({
             'message': 'Failed'
           })
         })
-      }, (err) => {
-        //console.log(err)
-        return res.status(400).json({
-          'message': 'Failed'
-        })
-      })
-    }, (err) => {
-      //console.log(err)
-      return res.status(400).json({
-        'message': 'Failed'
       })
     })
   }

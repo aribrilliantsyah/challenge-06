@@ -11,6 +11,7 @@ const UserGameRouter = require("./routes/UserGameRouter")
 const UserGameBiodataRouter = require("./routes/UserGameBiodataRouter")
 const UserGameHistoryRouter = require("./routes/UserGameHistoryRouter")
 const AuthRouter = require("./routes/AuthRouter")
+const Middleware = require("./middleware/Middleware")
 
 const app = express()
 const apiVersion = '/api/v1'

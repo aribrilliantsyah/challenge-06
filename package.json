@@ -4,7 +4,7 @@
   "description": "Ya ini untuk tugas, jangan nyontek lebih baik bertanya pada yang punya 😘",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --verbose",
+    "test": "jest --verbose",
     "start": "node server.js"
   },
   "author": "Ari Ardiansyah",

@@ -77,6 +77,15 @@ describe('User Game Biodata API Test', () => {
     expect(body.message).toEqual('Success')
   })
 
+  test(`GET ${path} - Success Get all (query user_game_id)`, async() => {
+    const { body, statusCode } = await request(app).get(`${path}?user_game_id=${user_game_id}`)
+      .set({
+        Authorization: `Bearer ${token}`
+      })
+    expect(statusCode).toEqual(200)
+    expect(body.message).toEqual('Success')
+  })
+
   test(`PUT ${path}/${id} - Success Update user game biodata`, async() => {
     const { body, statusCode } = await request(app).put(`${path}/${id}`)
       .send({
@@ -173,7 +182,6 @@ describe('User Game Biodata API Test', () => {
         Authorization: `Bearer ${token}`
       })
 
-    let id = body?.data?.id
     expect(statusCode).toEqual(400)
     expect(body.message).toEqual('Failed')
   })
@@ -187,11 +195,17 @@ describe('User Game Biodata API Test', () => {
     expect(body.message).toEqual('Failed')
   })
   
-  test(`PUT ${path}/${id} - Failed Update user game biodata (2) user_game_id = string`, async() => {
-    const { body, statusCode } = await request(app).put(`${path}/${id}`)
-      .send({
-        'user_game_id': 'hh'
+  test(`PUT ${path}/wkwk - Failed Update user game biodata (2) id = string`, async() => {
+    const { body, statusCode } = await request(app).put(`${path}/wkwk`)
+      .set({
+        Authorization: `Bearer ${token}`
       })
+    expect(statusCode).toEqual(400)
+    expect(body.message).toEqual('Failed')
+  })
+
+  test(`DELETE ${path}/wkwk - Failed Delete user game biodata (2) id = string`, async() => {
+    const { body, statusCode } = await request(app).put(`${path}/wkwk`)
       .set({
         Authorization: `Bearer ${token}`
       })
@@ -245,23 +259,6 @@ describe('User Game Biodata API Test', () => {
       })
 
     id = body?.data?.id
-    expect(statusCode).toEqual(200)
-    expect(body.message).toEqual('User game id not found')
-  })
-
-  test(`PUT ${path}/${id} - User game id not found Update user game biodata`, async() => {
-    const { body, statusCode } = await request(app).put(`${path}/${id}`)
-      .send({
-        "user_game_id": ug_id,
-        "name": "Ari Ganteng",
-        "gender": "Male",
-        "date_of_birth": "2000-09-08",
-        "place_of_birth": "Bandung",
-        "address": "Kp.Rancakasiat"
-      })
-      .set({
-        Authorization: `Bearer ${token}`
-      })
     expect(statusCode).toEqual(200)
     expect(body.message).toEqual('User game id not found')
   })

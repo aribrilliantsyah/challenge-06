@@ -75,6 +75,15 @@ describe('User Game history API Test', () => {
     expect(body.message).toEqual('Success')
   })
 
+  test(`GET ${path} - Success Get all (query user_game_id)`, async() => {
+    const { body, statusCode } = await request(app).get(`${path}?user_game_id=${user_game_id}`)
+      .set({
+        Authorization: `Bearer ${token}`
+      })
+    expect(statusCode).toEqual(200)
+    expect(body.message).toEqual('Success')
+  })
+
   test(`PUT ${path}/${id} - Success Update user game history`, async() => {
     const { body, statusCode } = await request(app).put(`${path}/${id}`)
       .send({
@@ -181,11 +190,17 @@ describe('User Game history API Test', () => {
     expect(body.message).toEqual('Failed')
   })
   
-  test(`PUT ${path}/${id} - Failed Update user game history (2) user_game_id = string`, async() => {
-    const { body, statusCode } = await request(app).put(`${path}/${id}`)
-      .send({
-        'user_game_id': 'hh'
+  test(`PUT ${path}/wkwk - Failed Update user game history (2) id = string`, async() => {
+    const { body, statusCode } = await request(app).put(`${path}/wkwkw`)
+      .set({
+        Authorization: `Bearer ${token}`
       })
+    expect(statusCode).toEqual(400)
+    expect(body.message).toEqual('Failed')
+  })
+
+  test(`DELETE ${path}/wkwk - Failed Delete user game history (2) id = string`, async() => {
+    const { body, statusCode } = await request(app).put(`${path}/wkwkw`)
       .set({
         Authorization: `Bearer ${token}`
       })
@@ -240,18 +255,4 @@ describe('User Game history API Test', () => {
     expect(body.message).toEqual('User game id not found')
   })
 
-  test(`PUT ${path}/${id} - User game id not found Update user game history`, async() => {
-    const { body, statusCode } = await request(app).put(`${path}/${id}`)
-      .send({
-        "user_game_id": ug_id,
-        "score": 10,
-        "start_at": "2022-04-07 10:10:00",
-        "end_at": "2022-04-07 12:10:00"
-      })
-      .set({
-        Authorization: `Bearer ${token}`
-      })
-    expect(statusCode).toEqual(200)
-    expect(body.message).toEqual('User game id not found')
-  })
 })

@@ -142,57 +142,40 @@ class UserGameHistoryController {
       })
     }
     
-    const checkUserGame = (user_game_id, success, failed) => {
+    const checkUserGame = (user_game_id, success) => {
       UserGame.findOne({ where: { id: user_game_id } }).then((usergame) => {
+        if(!usergame){
+          return res.status(200).json({
+            'message': 'User game id not found',
+          })
+        }  
         return success(usergame)
-      }).catch((err) => {
-        return failed(err)
       })
     }
 
     const checkBefore = (id, success, failed) => {
       UserGameHistory.findOne({where: {id: id }}).then((userhistory) => {
-        return success(userhistory)
-      }).catch((err) => {
-        return failed(err)
-      })
-    } 
-    
-    checkUserGame(userhistory_data.user_game_id, (data) => {
-      if(!data){
-        return res.status(200).json({
-          'message': 'User game id not found',
-        })
-      }
-
-      checkBefore(id, (data) => {
-        if(!data){
+        if(!userhistory){
           return res.status(200).json({
             'message': 'Data not found',
           })
-        }
-
+        }  
+        return success(userhistory)
+      })
+    } 
+    
+    checkBefore(id, (data) => {
+      checkUserGame(userhistory_data.user_game_id, (data) => {
         UserGameHistory.update(userhistory_data, query).then((userhistory) => {
           return res.status(200).json({
             'message': 'Success',
             'data': userhistory_data
           })
         }).catch((err) => {
-          //console.log(err)
           return res.status(400).json({
             'message': 'Failed'
           })
         })
-      }, (err) => {
-        //console.log(err)
-        return res.status(400).json({
-          'message': 'Failed'
-        })
-      })
-    }, (err) => {
-      //console.log(err)
-      return res.status(400).json({
-        'message': 'Failed'
       })
     })
   }

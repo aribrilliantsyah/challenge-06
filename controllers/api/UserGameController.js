@@ -112,6 +112,11 @@ class UserGameController {
         ],
         where: {id: id }
       }).then((usergame) => {
+        if(!usergame){
+          return res.status(200).json({
+            'message': 'Data not found',
+          })
+        }
         return success(usergame)
       }).catch((err) => {
         return failed(err)
@@ -119,12 +124,6 @@ class UserGameController {
     } 
     
     checkBefore(id, (data) => {
-      if(!data){
-        return res.status(200).json({
-          'message': 'Data not found',
-        })
-      }
-
       UserGame.update(usergame_data, query).then((usergame) => {
         return res.status(200).json({
           'message': 'Success',
